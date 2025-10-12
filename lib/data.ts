@@ -1,449 +1,455 @@
-import { Product, SearchFilters, SearchResult } from '../types';
-import gamesData from '../data/games-final.json';
-import giftCardsData from '../data/gift-cards-final.json';
-import topUpsData from '../data/top-ups-final.json';
-import Fuse from 'fuse.js';
+// CALEB Gaming Marketplace - Database-backed DataService
+// This replaces the JSON-based data service with Neon database integration
 
-// Combine all product data
-const allProductsData = [
-  ...gamesData,
-  ...giftCardsData,
-  ...topUpsData
-];
-
-// Type assertion to ensure the data matches our Product interface
-const products: Product[] = allProductsData as Product[];
+import { prisma } from './prisma'
+import { Product } from '../types'
 
 export interface AdvancedFilters {
   // Search
-  query?: string;
+  query?: string
   
   // Categories
-  categories?: string[];
-  subcategories?: string[];
+  categories?: string[]
+  subcategories?: string[]
   
   // Price
   priceRange?: {
-    min: number;
-    max: number;
-  };
+    min: number
+    max: number
+  }
   
   // Platforms
-  platforms?: string[];
+  platforms?: string[]
   
   // Other filters
-  regions?: string[];
-  inStock?: boolean;
-  hasDiscount?: boolean;
-  digital?: boolean;
+  regions?: string[]
+  inStock?: boolean
+  hasDiscount?: boolean
+  digital?: boolean
   
   // Rating
-  minRating?: number;
+  minRating?: number
   
   // Tags
-  tags?: string[];
+  tags?: string[]
   
   // Sellers
-  sellers?: string[];
+  sellers?: string[]
   
   // Date ranges
   dateRange?: {
-    start?: string;
-    end?: string;
-  };
+    from: string
+    to: string
+  }
 }
 
 export interface SortOptions {
-  field: 'price' | 'name' | 'rating' | 'discount' | 'createdAt' | 'reviews' | 'popularity';
-  direction: 'asc' | 'desc';
+  field: 'createdAt' | 'price' | 'rating' | 'title' | 'discount'
+  direction: 'asc' | 'desc'
 }
 
 export interface FilterStats {
-  totalProducts: number;
-  priceRange: { min: number; max: number };
-  categories: Array<{ name: string; count: number }>;
-  subcategories: Array<{ name: string; count: number }>;
-  platforms: Array<{ name: string; count: number }>;
-  regions: Array<{ name: string; count: number }>;
-  tags: Array<{ name: string; count: number }>;
-  sellers: Array<{ name: string; count: number }>;
-  ratingDistribution: Array<{ rating: number; count: number }>;
+  totalProducts: number
+  priceRange: { min: number; max: number }
+  categories: Array<{ name: string; count: number }>
+  subcategories: Array<{ name: string; count: number }>
+  platforms: Array<{ name: string; count: number }>
+  regions: Array<{ name: string; count: number }>
+  tags: Array<{ name: string; count: number }>
+  sellers: Array<{ name: string; count: number }>
+  ratingDistribution: Array<{ rating: number; count: number }>
 }
 
+export interface SearchResult {
+  products: Product[]
+  total: number
+  pagination: {
+    page: number
+    limit: number
+    total: number
+    totalPages: number
+  }
+  stats?: FilterStats
+}
+
+/**
+ * Database-backed DataService for CALEB Gaming Marketplace
+ * Provides all the same methods as the original JSON-based service
+ */
 export class DataService {
-  private static products: Product[] = allProductsData as Product[];
-  
-  private static fuseOptions = {
-    keys: [
-      { name: 'title', weight: 2 },
-      { name: 'description', weight: 1 },
-      { name: 'tags', weight: 1.5 },
-      { name: 'category', weight: 1.2 },
-      { name: 'subcategory', weight: 1.2 },
-    ],
-    threshold: 0.3,
-    includeScore: true,
-    includeMatches: true,
-  };
-
-  private static fuse = new Fuse(this.products, this.fuseOptions);
-
-  static async getProducts(): Promise<Product[]> {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 100));
-    return this.products;
-  }
-
+  /**
+   * Get all products
+   */
   static async getAllProducts(): Promise<Product[]> {
-    return this.products;
+    try {
+      const products = await prisma.product.findMany({
+        orderBy: { createdAt: 'desc' }
+      })
+      
+      return products.map(this.transformProduct)
+    } catch (error) {
+      console.error('Error fetching all products:', error)
+      return []
+    }
   }
 
+  /**
+   * Get product by ID
+   */
   static async getProductById(id: string): Promise<Product | null> {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    return this.products.find(product => product.id === id) || null;
+    try {
+      const product = await prisma.product.findUnique({
+        where: { id }
+      })
+      
+      return product ? this.transformProduct(product) : null
+    } catch (error) {
+      console.error('Error fetching product by ID:', error)
+      return null
+    }
   }
 
+  /**
+   * Get products by category
+   */
   static async getProductsByCategory(category: string): Promise<Product[]> {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    return this.products.filter(product =>
-      product.category.toLowerCase() === category.toLowerCase()
-    );
+    try {
+      const products = await prisma.product.findMany({
+        where: { category },
+        orderBy: { createdAt: 'desc' }
+      })
+      
+      return products.map(this.transformProduct)
+    } catch (error) {
+      console.error('Error fetching products by category:', error)
+      return []
+    }
   }
 
+  /**
+   * Get featured products
+   */
   static async getFeaturedProducts(limit: number = 8): Promise<Product[]> {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    // Return products with high ratings and good reviews
-    return this.products
-      .filter(product => product.rating >= 4.0 && product.reviews >= 100)
-      .sort((a, b) => b.rating * b.reviews - a.rating * a.reviews)
-      .slice(0, limit);
+    try {
+      const products = await prisma.product.findMany({
+        where: {
+          rating: { gte: 4.0 },
+          inStock: true
+        },
+        orderBy: [
+          { rating: 'desc' },
+          { reviewCount: 'desc' }
+        ],
+        take: limit
+      })
+      
+      return products.map(this.transformProduct)
+    } catch (error) {
+      console.error('Error fetching featured products:', error)
+      return []
+    }
   }
 
+  /**
+   * Get products with deals/discounts
+   */
   static async getDeals(limit: number = 6): Promise<Product[]> {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    // Return products with discounts
-    return this.products
-      .filter(product => product.discount && product.discount > 0)
-      .sort((a, b) => (b.discount || 0) - (a.discount || 0))
-      .slice(0, limit);
-  }
-
-  static async searchProducts(
-    query: string,
-    filters: SearchFilters,
-    page: number = 1,
-    limit: number = 12
-  ): Promise<SearchResult> {
-    // Convert old filters to new format
-    const advancedFilters: AdvancedFilters = {
-      query,
-      categories: filters.category ? [filters.category] : undefined,
-      subcategories: filters.subcategory ? [filters.subcategory] : undefined,
-      platforms: filters.platform,
-      regions: filters.region ? [filters.region] : undefined,
-      priceRange: filters.priceRange,
-      inStock: filters.inStock,
-      hasDiscount: filters.discount,
-      tags: filters.tags,
-    };
-
-    const result = await this.searchProductsAdvanced(advancedFilters, { field: 'createdAt', direction: 'desc' }, page, limit);
-    
-    return {
-      products: result.products,
-      total: result.pagination.total,
-      page: result.pagination.page,
-      totalPages: result.pagination.totalPages,
-      filters,
-    };
-  }
-
-  static getCategories(): string[] {
-    const categories = [...new Set(this.products.map(product => product.category))];
-    return categories.sort();
-  }
-
-  static getSubcategories(category?: string): string[] {
-    let filteredProducts = this.products;
-    if (category) {
-      filteredProducts = this.products.filter(product =>
-        product.category.toLowerCase() === category.toLowerCase()
-      );
+    try {
+      const products = await prisma.product.findMany({
+        where: {
+          discount: { gt: 0 },
+          inStock: true
+        },
+        orderBy: { discount: 'desc' },
+        take: limit
+      })
+      
+      return products.map(this.transformProduct)
+    } catch (error) {
+      console.error('Error fetching deals:', error)
+      return []
     }
-    const subcategories = [...new Set(filteredProducts.map(product => product.subcategory))];
-    return subcategories.sort();
   }
 
-  static getPlatforms(): string[] {
-    const platforms = [...new Set(this.products.flatMap(product => product.platform))];
-    return platforms.sort();
+  /**
+   * Search products with text query
+   */
+  static async searchProducts(query: string, limit: number = 20): Promise<Product[]> {
+    try {
+      const products = await prisma.product.findMany({
+        where: {
+          OR: [
+            { title: { contains: query, mode: 'insensitive' } },
+            { description: { contains: query, mode: 'insensitive' } },
+            { seller: { contains: query, mode: 'insensitive' } }
+          ]
+        },
+        take: limit,
+        orderBy: { rating: 'desc' }
+      })
+      
+      return products.map(this.transformProduct)
+    } catch (error) {
+      console.error('Error searching products:', error)
+      return []
+    }
   }
 
-  static getPriceRange(): { min: number; max: number } {
-    const prices = this.products.map(product => product.price);
-    return {
-      min: Math.min(...prices),
-      max: Math.max(...prices),
-    };
-  }
-
-  // Get all products with advanced filtering and sorting
+  /**
+   * Advanced search with filters, sorting, and pagination
+   */
   static async searchProductsAdvanced(
-    filters: AdvancedFilters = {},
-    sort: SortOptions = { field: 'createdAt', direction: 'desc' },
+    filters: AdvancedFilters,
+    sort: SortOptions,
     page: number = 1,
-    limit: number = 12
-  ) {
-    let filteredProducts = [...this.products];
+    limit: number = 20
+  ): Promise<SearchResult> {
+    try {
+      // Build where clause
+      const where: any = {}
 
-    // Apply text search
-    if (filters.query && filters.query.trim()) {
-      const fuseResults = this.fuse.search(filters.query.trim());
-      const searchIds = new Set(fuseResults.map(result => result.item.id));
-      filteredProducts = filteredProducts.filter(product => searchIds.has(product.id));
-    }
+      // Category filters
+      if (filters.categories?.length) {
+        where.category = { in: filters.categories }
+      }
 
-    // Apply category filters
-    if (filters.categories && filters.categories.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.categories!.includes(product.category)
-      );
-    }
+      if (filters.subcategories?.length) {
+        where.subcategory = { in: filters.subcategories }
+      }
 
-    if (filters.subcategories && filters.subcategories.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.subcategories!.includes(product.subcategory)
-      );
-    }
+      // Price range
+      if (filters.priceRange) {
+        where.price = {
+          gte: filters.priceRange.min,
+          lte: filters.priceRange.max
+        }
+      }
 
-    // Apply price range filter
-    if (filters.priceRange) {
-      const { min, max } = filters.priceRange;
-      filteredProducts = filteredProducts.filter(product =>
-        product.price >= min && product.price <= max
-      );
-    }
+      // Platform filter (array contains)
+      if (filters.platforms?.length) {
+        where.platform = {
+          hasSome: filters.platforms
+        }
+      }
 
-    // Apply platform filters
-    if (filters.platforms && filters.platforms.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.platforms!.some(platform => product.platform.includes(platform))
-      );
-    }
+      // Other filters
+      if (filters.regions?.length) {
+        where.region = { in: filters.regions }
+      }
 
-    // Apply region filters
-    if (filters.regions && filters.regions.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.regions!.includes(product.region)
-      );
-    }
+      if (filters.inStock !== undefined) {
+        where.inStock = filters.inStock
+      }
 
-    // Apply stock filter
-    if (filters.inStock !== undefined) {
-      filteredProducts = filteredProducts.filter(product =>
-        product.inStock === filters.inStock
-      );
-    }
+      if (filters.hasDiscount) {
+        where.discount = { gt: 0 }
+      }
 
-    // Apply discount filter
-    if (filters.hasDiscount) {
-      filteredProducts = filteredProducts.filter(product =>
-        product.discount && product.discount > 0
-      );
-    }
+      if (filters.digital !== undefined) {
+        where.digital = filters.digital
+      }
 
-    // Apply digital filter
-    if (filters.digital !== undefined) {
-      filteredProducts = filteredProducts.filter(product =>
-        product.digital === filters.digital
-      );
-    }
+      if (filters.minRating) {
+        where.rating = { gte: filters.minRating }
+      }
 
-    // Apply rating filter
-    if (filters.minRating !== undefined) {
-      filteredProducts = filteredProducts.filter(product =>
-        product.rating >= filters.minRating!
-      );
-    }
+      if (filters.tags?.length) {
+        where.tags = {
+          hasSome: filters.tags
+        }
+      }
 
-    // Apply tag filters
-    if (filters.tags && filters.tags.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.tags!.some(tag => product.tags.includes(tag))
-      );
-    }
+      if (filters.sellers?.length) {
+        where.seller = { in: filters.sellers }
+      }
 
-    // Apply seller filters
-    if (filters.sellers && filters.sellers.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.sellers!.includes(product.seller)
-      );
-    }
+      // Date range
+      if (filters.dateRange) {
+        where.createdAt = {
+          gte: new Date(filters.dateRange.from),
+          lte: new Date(filters.dateRange.to)
+        }
+      }
 
-    // Apply date range filter
-    if (filters.dateRange) {
-      const { start, end } = filters.dateRange;
-      filteredProducts = filteredProducts.filter(product => {
-        const productDate = new Date(product.createdAt);
-        const startDate = start ? new Date(start) : new Date('1970-01-01');
-        const endDate = end ? new Date(end) : new Date();
-        return productDate >= startDate && productDate <= endDate;
-      });
-    }
+      // Text search
+      if (filters.query) {
+        where.OR = [
+          { title: { contains: filters.query, mode: 'insensitive' } },
+          { description: { contains: filters.query, mode: 'insensitive' } },
+          { seller: { contains: filters.query, mode: 'insensitive' } }
+        ]
+      }
 
-    // Apply sorting
-    filteredProducts = this.sortProducts(filteredProducts, sort);
-
-    // Calculate pagination
-    const total = filteredProducts.length;
-    const totalPages = Math.ceil(total / limit);
-    const offset = (page - 1) * limit;
-    const paginatedProducts = filteredProducts.slice(offset, offset + limit);
-
-    return {
-      products: paginatedProducts,
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages,
-        hasNext: page < totalPages,
-        hasPrev: page > 1,
-      },
-      filters: this.getFilterStats(this.products), // Stats for filter UI
-    };
-  }
-
-  // Sort products based on criteria
-  private static sortProducts(products: Product[], sort: SortOptions): Product[] {
-    return products.sort((a, b) => {
-      let comparison = 0;
-
+      // Build orderBy
+      const orderBy: any = {}
+      
       switch (sort.field) {
         case 'price':
-          comparison = a.price - b.price;
-          break;
-        case 'name':
-          comparison = a.title.localeCompare(b.title);
-          break;
+          orderBy.price = sort.direction
+          break
         case 'rating':
-          comparison = a.rating - b.rating;
-          break;
+          orderBy.rating = sort.direction
+          break
+        case 'title':
+          orderBy.title = sort.direction
+          break
         case 'discount':
-          comparison = (a.discount || 0) - (b.discount || 0);
-          break;
-        case 'reviews':
-          comparison = a.reviews - b.reviews;
-          break;
-        case 'createdAt':
-          comparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-          break;
-        case 'popularity':
-          // Popularity based on reviews count and rating
-          const popularityA = a.reviews * a.rating;
-          const popularityB = b.reviews * b.rating;
-          comparison = popularityA - popularityB;
-          break;
+          orderBy.discount = sort.direction
+          break
         default:
-          comparison = 0;
+          orderBy.createdAt = sort.direction
       }
 
-      return sort.direction === 'desc' ? -comparison : comparison;
-    });
-  }
+      // Execute queries
+      const [products, total] = await Promise.all([
+        prisma.product.findMany({
+          where,
+          orderBy,
+          skip: (page - 1) * limit,
+          take: limit
+        }),
+        prisma.product.count({ where })
+      ])
 
-  // Get filter statistics for UI
-  static getFilterStats(products: Product[] = this.products): FilterStats {
-    const prices = products.map(p => p.price);
-    const categories = new Map<string, number>();
-    const subcategories = new Map<string, number>();
-    const platforms = new Map<string, number>();
-    const regions = new Map<string, number>();
-    const tags = new Map<string, number>();
-    const sellers = new Map<string, number>();
-    const ratings = new Map<number, number>();
-
-    products.forEach(product => {
-      // Count categories
-      categories.set(product.category, (categories.get(product.category) || 0) + 1);
-      
-      // Count subcategories
-      subcategories.set(product.subcategory, (subcategories.get(product.subcategory) || 0) + 1);
-      
-      // Count platforms
-      product.platform.forEach(platform => {
-        platforms.set(platform, (platforms.get(platform) || 0) + 1);
-      });
-      
-      // Count regions
-      regions.set(product.region, (regions.get(product.region) || 0) + 1);
-      
-      // Count tags
-      product.tags.forEach(tag => {
-        tags.set(tag, (tags.get(tag) || 0) + 1);
-      });
-      
-      // Count sellers
-      sellers.set(product.seller, (sellers.get(product.seller) || 0) + 1);
-      
-      // Count ratings (rounded)
-      const roundedRating = Math.floor(product.rating);
-      ratings.set(roundedRating, (ratings.get(roundedRating) || 0) + 1);
-    });
-
-    return {
-      totalProducts: products.length,
-      priceRange: {
-        min: Math.min(...prices),
-        max: Math.max(...prices),
-      },
-      categories: Array.from(categories.entries()).map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      subcategories: Array.from(subcategories.entries()).map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      platforms: Array.from(platforms.entries()).map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      regions: Array.from(regions.entries()).map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      tags: Array.from(tags.entries()).map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count).slice(0, 20), // Top 20 tags
-      sellers: Array.from(sellers.entries()).map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      ratingDistribution: Array.from(ratings.entries()).map(([rating, count]) => ({ rating, count }))
-        .sort((a, b) => b.rating - a.rating),
-    };
-  }
-
-  // Autocomplete suggestions
-  static getSearchSuggestions(query: string, limit: number = 5): string[] {
-    if (!query || query.length < 2) return [];
-
-    const suggestions = new Set<string>();
-    const lowerQuery = query.toLowerCase();
-
-    this.products.forEach(product => {
-      // Add title matches
-      if (product.title.toLowerCase().includes(lowerQuery)) {
-        suggestions.add(product.title);
-      }
-
-      // Add tag matches
-      product.tags.forEach(tag => {
-        if (tag.toLowerCase().includes(lowerQuery)) {
-          suggestions.add(tag);
+      return {
+        products: products.map(this.transformProduct),
+        total,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit)
         }
-      });
-
-      // Add category matches
-      if (product.category.toLowerCase().includes(lowerQuery)) {
-        suggestions.add(product.category);
       }
-
-      if (product.subcategory.toLowerCase().includes(lowerQuery)) {
-        suggestions.add(product.subcategory);
+    } catch (error) {
+      console.error('Error in advanced search:', error)
+      return {
+        products: [],
+        total: 0,
+        pagination: {
+          page,
+          limit,
+          total: 0,
+          totalPages: 0
+        }
       }
-    });
-
-    return Array.from(suggestions).slice(0, limit);
+    }
   }
-} 
+
+  /**
+   * Get filter statistics
+   */
+  static async getFilterStats(products?: Product[]): Promise<FilterStats> {
+    try {
+      const [
+        totalProducts,
+        priceStats,
+        categoryStats,
+        subcategoryStats,
+        regionStats,
+        sellerStats,
+        ratingStats
+      ] = await Promise.all([
+        prisma.product.count(),
+        prisma.product.aggregate({
+          _min: { price: true },
+          _max: { price: true }
+        }),
+        prisma.product.groupBy({
+          by: ['category'],
+          _count: { id: true }
+        }),
+        prisma.product.groupBy({
+          by: ['subcategory'],
+          _count: { id: true }
+        }),
+        prisma.product.groupBy({
+          by: ['region'],
+          _count: { id: true }
+        }),
+        prisma.product.groupBy({
+          by: ['seller'],
+          _count: { id: true }
+        }),
+        prisma.product.groupBy({
+          by: ['rating'],
+          _count: { id: true }
+        })
+      ])
+
+      return {
+        totalProducts,
+        priceRange: {
+          min: priceStats._min.price || 0,
+          max: priceStats._max.price || 0
+        },
+        categories: categoryStats.map((item: any) => ({
+          name: item.category,
+          count: item._count.id
+        })),
+        subcategories: subcategoryStats.map((item: any) => ({
+          name: item.subcategory,
+          count: item._count.id
+        })),
+        platforms: [], // Will implement if needed
+        regions: regionStats.map((item: any) => ({
+          name: item.region,
+          count: item._count.id
+        })),
+        tags: [], // Will implement if needed
+        sellers: sellerStats.map((item: any) => ({
+          name: item.seller,
+          count: item._count.id
+        })),
+        ratingDistribution: ratingStats.map((item: any) => ({
+          rating: item.rating,
+          count: item._count.id
+        }))
+      }
+    } catch (error) {
+      console.error('Error getting filter stats:', error)
+      return {
+        totalProducts: 0,
+        priceRange: { min: 0, max: 0 },
+        categories: [],
+        subcategories: [],
+        platforms: [],
+        regions: [],
+        tags: [],
+        sellers: [],
+        ratingDistribution: []
+      }
+    }
+  }
+
+  /**
+   * Transform Prisma product to our Product interface
+   */
+  private static transformProduct(product: any): Product {
+    return {
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      discount: product.discount,
+      category: product.category,
+      subcategory: product.subcategory,
+      platform: product.platform,
+      region: product.region,
+      digital: product.digital,
+      inStock: product.inStock,
+      stockCount: product.stockCount,
+      images: product.images,
+      tags: product.tags,
+      rating: product.rating,
+      reviews: product.reviewCount,
+      seller: product.seller,
+      deliveryTime: product.deliveryTime,
+      requirements: product.requirements,
+      features: product.features,
+      createdAt: product.createdAt.toISOString(),
+      updatedAt: product.updatedAt.toISOString()
+    }
+  }
+}
