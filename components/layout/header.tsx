@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingCart, User, Heart, Menu, X } from 'lucide-react';
+import { Search, ShoppingCart, User, Heart, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { cn } from '../../lib/utils';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 interface HeaderProps {
   cartItemCount?: number;
@@ -15,6 +16,7 @@ interface HeaderProps {
 export function Header({ cartItemCount = 0, wishlistCount = 0 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const { data: session, status } = useSession();
 
   const navigation = [
     { name: 'Games', href: '/categories/games' },
@@ -81,10 +83,35 @@ export function Header({ cartItemCount = 0, wishlistCount = 0 }: HeaderProps) {
               )}
             </Button>
 
-            {/* User */}
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
+            {/* User Authentication */}
+            {status === 'loading' ? (
+              <Button variant="ghost" size="icon" disabled>
+                <User className="h-5 w-5" />
+              </Button>
+            ) : session ? (
+              <div className="flex items-center space-x-2">
+                <span className="hidden sm:inline text-sm text-muted-foreground">
+                  {session.user.name || session.user.email}
+                </span>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  onClick={() => signOut()}
+                  title="Sign out"
+                >
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </div>
+            ) : (
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => signIn()}
+                title="Sign in"
+              >
+                <User className="h-5 w-5" />
+              </Button>
+            )}
 
             {/* Mobile Menu Button */}
             <Button
