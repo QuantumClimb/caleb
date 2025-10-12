@@ -1,0 +1,76 @@
+[
+  {
+    "id": "topup-1",
+    "title": "Fortnite - 1000 V-Bucks",
+    "description": "Purchase 1000 V-Bucks for Fortnite to buy Battle Passes, outfits, and more.",
+    "price": 9.99,
+    "originalPrice": 9.99,
+    "discount": 0,
+    "category": "Top-ups",
+    "subcategory": "In-Game Currency",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 500,
+    "rating": 4.6,
+    "reviews": 2540,
+    "images": [
+      "https://cdn2.unrealengine.com/fortnite-v-bucks-1920x1080-1920x1080-491eda9eb64c.jpg"
+    ],
+    "tags": [
+      "V-Bucks",
+      "Fortnite",
+      "Currency"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "features": [
+      "Instant Delivery",
+      "Global",
+      "1000 V-Bucks"
+    ],
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-12-01T10:00:00Z"
+  },
+  {
+    "id": "topup-2",
+    "title": "Valorant - 1000 VP",
+    "description": "Purchase 1000 Valorant Points to unlock agents, skins, and battle passes.",
+    "price": 9.99,
+    "originalPrice": 9.99,
+    "discount": 0,
+    "category": "Top-ups",
+    "subcategory": "In-Game Currency",
+    "platform": [
+      "Riot Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 300,
+    "rating": 4.5,
+    "reviews": 1890,
+    "images": [
+      "https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt0789cf2b37dc3d6d/60ee0d5bb60a6b4a1d3b3c3d/lol-logo.jpg"
+    ],
+    "tags": [
+      "VP",
+      "Valorant",
+      "Currency"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "features": [
+      "Instant Delivery",
+      "Global",
+      "1000 VP"
+    ],
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-12-01T10:00:00Z"
+  }
+]

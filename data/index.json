@@ -1,0 +1,32 @@
+{
+  "dataFiles": {
+    "games": {
+      "file": "games.json",
+      "description": "Gaming products including AAA titles, indie games, and expansions",
+      "category": "Games",
+      "count": 8
+    },
+    "giftCards": {
+      "file": "gift-cards.json",
+      "description": "Digital gift cards for major gaming platforms",
+      "category": "Gift Cards",
+      "count": 6
+    },
+    "topUps": {
+      "file": "top-ups.json",
+      "description": "In-game currency and virtual credits",
+      "category": "Top-ups",
+      "count": 6
+    }
+  },
+  "totalProducts": 20,
+  "lastUpdated": "2024-02-07T00:00:00Z",
+  "version": "2.0.0",
+  "features": [
+    "Real image URLs from Steam, Epic Games, and official sources",
+    "Wikimedia logos for consistent branding",
+    "Separate files for easier parsing and maintenance",
+    "Cross-platform compatibility data",
+    "Detailed product metadata"
+  ]
+} 

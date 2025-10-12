@@ -1,0 +1,64 @@
+[
+  {
+    "id": "user_1",
+    "email": "demo@caleb.com",
+    "name": "Demo User",
+    "avatar": "https://avatars.githubusercontent.com/u/1?v=4",
+    "role": "customer",
+    "isVerified": true,
+    "preferences": {
+      "platform": ["PC", "PlayStation"],
+      "categories": ["Games", "Gift Cards"],
+      "region": "US",
+      "currency": "USD",
+      "notifications": {
+        "email": true,
+        "promotions": true,
+        "orderUpdates": true
+      }
+    },
+    "addresses": [
+      {
+        "id": "addr_1",
+        "type": "billing",
+        "name": "Demo User",
+        "street": "123 Gaming Street",
+        "city": "Tech City",
+        "state": "CA",
+        "zipCode": "90210",
+        "country": "US",
+        "isDefault": true
+      }
+    ],
+    "paymentMethods": [
+      {
+        "id": "pm_1",
+        "type": "card",
+        "last4": "4242",
+        "brand": "visa",
+        "isDefault": true
+      }
+    ],
+    "wishlist": ["1", "4"],
+    "cart": [],
+    "orderHistory": [
+      {
+        "id": "order_1",
+        "date": "2024-01-20T14:30:00Z",
+        "status": "completed",
+        "total": 47.99,
+        "items": [
+          {
+            "productId": "2",
+            "quantity": 1,
+            "price": 47.99
+          }
+        ]
+      }
+    ],
+    "loyaltyPoints": 120,
+    "totalSpent": 247.95,
+    "createdAt": "2024-01-01T08:00:00Z",
+    "lastLoginAt": "2024-01-24T16:20:00Z"
+  }
+] 

@@ -1,0 +1,1015 @@
+[
+  {
+    "id": "game-1",
+    "title": "Call of Duty: Modern Warfare III",
+    "description": "The latest installment in the iconic Call of Duty franchise. Experience intense multiplayer combat and an epic single-player campaign.",
+    "price": 69.99,
+    "originalPrice": 79.99,
+    "discount": 12,
+    "category": "Games",
+    "subcategory": "FPS",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 500,
+    "rating": 4.3,
+    "reviews": 15420,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2519060/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2519060/ss_1.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2519060/ss_2.jpg"
+    ],
+    "tags": [
+      "FPS",
+      "Action",
+      "Multiplayer",
+      "Military"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10 64-bit, Intel Core i5-6600K / AMD Ryzen 5 1400, 12 GB RAM, NVIDIA GeForce GTX 960 / AMD Radeon RX 470, 149 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K / AMD Ryzen 7 2700X, 16 GB RAM, NVIDIA GeForce RTX 2070 / AMD Radeon RX 6600, 149 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Cross-platform"
+    ],
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-12-01T15:30:00Z"
+  },
+  {
+    "id": "game-2",
+    "title": "Cyberpunk 2077: Phantom Liberty",
+    "description": "The ultimate edition of the groundbreaking RPG, now with the Phantom Liberty expansion. Explore Night City like never before.",
+    "price": 59.99,
+    "originalPrice": 69.99,
+    "discount": 14,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 350,
+    "rating": 4.5,
+    "reviews": 12890,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_1.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2.jpg"
+    ],
+    "tags": [
+      "RPG",
+      "Open World",
+      "Cyberpunk",
+      "Story Rich"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10 64-bit, Intel Core i7-6700HQ / AMD Ryzen 5 1600, 12 GB RAM, NVIDIA GeForce GTX 1060 / AMD Radeon RX 580, 70 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K / AMD Ryzen 7 3700X, 16 GB RAM, NVIDIA GeForce RTX 3070 / AMD Radeon RX 6800, 70 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Character Customization",
+      "Open World"
+    ],
+    "createdAt": "2024-01-10T08:00:00Z",
+    "updatedAt": "2024-11-15T12:00:00Z"
+  },
+  {
+    "id": "game-3",
+    "title": "Minecraft: Java & Bedrock Edition",
+    "description": "The ultimate Minecraft experience with both Java and Bedrock editions. Build, explore, and survive in infinite worlds.",
+    "price": 29.99,
+    "originalPrice": 29.99,
+    "discount": 0,
+    "category": "Games",
+    "subcategory": "Sandbox",
+    "platform": [
+      "PC",
+      "Windows Store"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 1000,
+    "rating": 4.8,
+    "reviews": 25670,
+    "images": [
+      "https://www.minecraft.net/content/dam/games/minecraft/screenshots/Java-Edition-header.jpg",
+      "https://www.minecraft.net/content/dam/games/minecraft/screenshots/screenshot-1.jpg",
+      "https://www.minecraft.net/content/dam/games/minecraft/screenshots/screenshot-2.jpg"
+    ],
+    "tags": [
+      "Sandbox",
+      "Building",
+      "Survival",
+      "Creative"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i3-3210 / AMD A8-7600, 4 GB RAM, Intel HD Graphics 4000 / AMD Radeon R5, 4 GB storage",
+      "recommended": "Windows 11, Intel Core i5-8400 / AMD Ryzen 5 2600, 8 GB RAM, NVIDIA GeForce GTX 1060 / AMD Radeon RX 580, 4 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Creative Mode",
+      "Survival Mode"
+    ],
+    "createdAt": "2024-01-05T10:00:00Z",
+    "updatedAt": "2024-12-01T10:00:00Z"
+  },
+  {
+    "id": "game-4",
+    "title": "Fortnite - Save the World",
+    "description": "The original Fortnite experience. Build fortifications and fight off zombie-like creatures in this co-op survival game.",
+    "price": 19.99,
+    "originalPrice": 39.99,
+    "discount": 50,
+    "category": "Games",
+    "subcategory": "Action",
+    "platform": [
+      "PC",
+      "Epic Games"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 750,
+    "rating": 4.1,
+    "reviews": 8950,
+    "images": [
+      "https://cdn2.unrealengine.com/fortnite-save-the-world-1920x1080-1920x1080-491eda9eb64c.jpg",
+      "https://cdn2.unrealengine.com/fortnite-screenshot-1-1920x1080-1920x1080-491eda9eb64c.jpg",
+      "https://cdn2.unrealengine.com/fortnite-screenshot-2-1920x1080-1920x1080-491eda9eb64c.jpg"
+    ],
+    "tags": [
+      "Survival",
+      "Co-op",
+      "Building",
+      "Action"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10 64-bit, Intel Core i3-3225 / AMD FX-4350, 8 GB RAM, Intel HD 4000 / AMD Radeon HD 7870, 26 GB storage",
+      "recommended": "Windows 11, Intel Core i5-8400 / AMD Ryzen 5 2600, 16 GB RAM, NVIDIA GeForce GTX 1060 / AMD Radeon RX 580, 26 GB storage"
+    },
+    "features": [
+      "Co-op",
+      "Building",
+      "Tower Defense"
+    ],
+    "createdAt": "2024-02-01T09:00:00Z",
+    "updatedAt": "2024-11-20T14:00:00Z"
+  },
+  {
+    "id": "game-5",
+    "title": "Dead by Daylight",
+    "description": "A multiplayer horror game where one player takes on the role of a savage Killer and the others play as Survivors.",
+    "price": 19.99,
+    "originalPrice": 19.99,
+    "discount": 0,
+    "category": "Games",
+    "subcategory": "Horror",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 400,
+    "rating": 4.2,
+    "reviews": 45230,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/ss_1.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/ss_2.jpg"
+    ],
+    "tags": [
+      "Horror",
+      "Multiplayer",
+      "Survival",
+      "Online Co-Op"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10 64-bit, Intel Core i3-4170 / AMD FX-8120, 8 GB RAM, GeForce GTX 460 / AMD HD 6850, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i5-8400 / AMD Ryzen 5 2600, 16 GB RAM, NVIDIA GeForce GTX 1060 / AMD Radeon RX 580, 50 GB storage"
+    },
+    "features": [
+      "Multiplayer",
+      "Online Co-Op",
+      "Horror"
+    ],
+    "createdAt": "2024-01-20T11:00:00Z",
+    "updatedAt": "2024-11-30T16:00:00Z"
+  },
+  {
+    "id": "game-6",
+    "title": "Elden Ring",
+    "description": "A fantasy action-RPG adventure set within a world created by Hidetaka Miyazaki and George R.R. Martin.",
+    "price": 49.99,
+    "originalPrice": 59.99,
+    "discount": 17,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 300,
+    "rating": 4.7,
+    "reviews": 18940,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_1.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_2.jpg"
+    ],
+    "tags": [
+      "RPG",
+      "Open World",
+      "Dark Fantasy",
+      "Souls-like"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-8400 / AMD Ryzen 3 3300X, 12 GB RAM, NVIDIA GeForce GTX 1060 / AMD Radeon RX 580, 60 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K / AMD Ryzen 5 3600X, 16 GB RAM, NVIDIA GeForce RTX 3060 / AMD Radeon RX 6600, 60 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Online Co-Op",
+      "Open World"
+    ],
+    "createdAt": "2024-01-25T12:00:00Z",
+    "updatedAt": "2024-12-01T10:00:00Z"
+  },
+  {
+    "id": "game-7",
+    "title": "The Witcher 3: Wild Hunt - Complete Edition",
+    "description": "The complete edition of the award-winning RPG includes all DLCs and expansions. Hunt monsters and explore a vast open world.",
+    "price": 39.99,
+    "originalPrice": 49.99,
+    "discount": 20,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 450,
+    "rating": 4.9,
+    "reviews": 32150,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/ss_1.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/ss_2.jpg"
+    ],
+    "tags": [
+      "RPG",
+      "Open World",
+      "Fantasy",
+      "Story Rich"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10 64-bit, Intel CPU Core i5-2500K / AMD A10-5800K, 6 GB RAM, NVIDIA GeForce GTX 660 / AMD Radeon HD 7870, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K / AMD Ryzen 5 3600, 16 GB RAM, NVIDIA GeForce RTX 2070 / AMD Radeon RX 6600, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "RPG Elements",
+      "Open World"
+    ],
+    "createdAt": "2024-01-30T13:00:00Z",
+    "updatedAt": "2024-11-25T17:00:00Z"
+  },
+  {
+    "id": "game-8",
+    "title": "Grand Theft Auto V",
+    "description": "Experience the award-winning world of Los Santos and Blaine County with the most ambitious and complex game Rockstar has created.",
+    "price": 29.99,
+    "originalPrice": 39.99,
+    "discount": 25,
+    "category": "Games",
+    "subcategory": "Action",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 600,
+    "rating": 4.4,
+    "reviews": 28940,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/ss_1.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/ss_2.jpg"
+    ],
+    "tags": [
+      "Open World",
+      "Action",
+      "Crime",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10 64-bit, Intel Core 2 Quad CPU Q6600 / AMD Phenom 9850, 8 GB RAM, NVIDIA 9800 GT / AMD HD 4870, 120 GB storage",
+      "recommended": "Windows 11, Intel Core i5-8400 / AMD Ryzen 5 2600, 16 GB RAM, NVIDIA GeForce GTX 1060 / AMD Radeon RX 580, 120 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Open World"
+    ],
+    "createdAt": "2024-02-05T14:00:00Z",
+    "updatedAt": "2024-12-01T18:00:00Z"
+  },
+  {
+    "id": "game-9",
+    "title": "Baldur's Gate 3",
+    "description": "Experience the amazing world of Baldur's Gate 3. An incredible gaming adventure awaits you.",
+    "price": 41,
+    "originalPrice": 70,
+    "discount": 14,
+    "category": "Games",
+    "subcategory": "FPS",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 524,
+    "rating": 3.1,
+    "reviews": 5541,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Baldur's%20Gate%203",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2025-01-03T11:02:34.471Z",
+    "updatedAt": "2025-05-31T20:36:41.680Z"
+  },
+  {
+    "id": "game-10",
+    "title": "Starfield",
+    "description": "Experience the amazing world of Starfield. An incredible gaming adventure awaits you.",
+    "price": 57,
+    "originalPrice": 69,
+    "discount": 39,
+    "category": "Games",
+    "subcategory": "Strategy",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 504,
+    "rating": 3,
+    "reviews": 12163,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Starfield",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-10-03T10:56:29.585Z",
+    "updatedAt": "2025-05-31T20:36:41.680Z"
+  },
+  {
+    "id": "game-11",
+    "title": "Diablo IV",
+    "description": "Experience the amazing world of Diablo IV. An incredible gaming adventure awaits you.",
+    "price": 45,
+    "originalPrice": 72,
+    "discount": 27,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 573,
+    "rating": 4.8,
+    "reviews": 12573,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Diablo%20IV",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2025-02-09T19:56:15.832Z",
+    "updatedAt": "2025-05-31T20:36:41.680Z"
+  },
+  {
+    "id": "game-12",
+    "title": "Hogwarts Legacy",
+    "description": "Experience the amazing world of Hogwarts Legacy. An incredible gaming adventure awaits you.",
+    "price": 58,
+    "originalPrice": 77,
+    "discount": 18,
+    "category": "Games",
+    "subcategory": "Strategy",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 561,
+    "rating": 4.6,
+    "reviews": 5542,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Hogwarts%20Legacy",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2025-04-13T21:01:40.751Z",
+    "updatedAt": "2025-05-31T20:36:41.680Z"
+  },
+  {
+    "id": "game-13",
+    "title": "Spider-Man Remastered",
+    "description": "Experience the amazing world of Spider-Man Remastered. An incredible gaming adventure awaits you.",
+    "price": 31,
+    "originalPrice": 70,
+    "discount": 29,
+    "category": "Games",
+    "subcategory": "Strategy",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 494,
+    "rating": 4.4,
+    "reviews": 8381,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Spider-Man%20Remastered",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-07-28T12:06:42.589Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-14",
+    "title": "God of War",
+    "description": "Experience the amazing world of God of War. An incredible gaming adventure awaits you.",
+    "price": 20,
+    "originalPrice": 74,
+    "discount": 15,
+    "category": "Games",
+    "subcategory": "Adventure",
+    "platform": [
+      "Xbox Live",
+      "Xbox"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 152,
+    "rating": 4.3,
+    "reviews": 13919,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=God%20of%20War",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-10-26T18:46:05.955Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-15",
+    "title": "Horizon Zero Dawn",
+    "description": "Experience the amazing world of Horizon Zero Dawn. An incredible gaming adventure awaits you.",
+    "price": 64,
+    "originalPrice": 78,
+    "discount": 33,
+    "category": "Games",
+    "subcategory": "Adventure",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 333,
+    "rating": 3.8,
+    "reviews": 2579,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Horizon%20Zero%20Dawn",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-12-17T14:13:04.572Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-16",
+    "title": "Red Dead Redemption 2",
+    "description": "Experience the amazing world of Red Dead Redemption 2. An incredible gaming adventure awaits you.",
+    "price": 25,
+    "originalPrice": 63,
+    "discount": 39,
+    "category": "Games",
+    "subcategory": "Strategy",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 483,
+    "rating": 3.1,
+    "reviews": 9151,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Red%20Dead%20Redemption%202",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2025-02-26T16:55:01.111Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-17",
+    "title": "Assassin's Creed Valhalla",
+    "description": "Experience the amazing world of Assassin's Creed Valhalla. An incredible gaming adventure awaits you.",
+    "price": 36,
+    "originalPrice": 73,
+    "discount": 11,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 142,
+    "rating": 4.5,
+    "reviews": 11286,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Assassin's%20Creed%20Valhalla",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2025-03-05T17:51:28.590Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-18",
+    "title": "Doom Eternal",
+    "description": "Experience the amazing world of Doom Eternal. An incredible gaming adventure awaits you.",
+    "price": 37,
+    "originalPrice": 68,
+    "discount": 38,
+    "category": "Games",
+    "subcategory": "Action",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 103,
+    "rating": 3.2,
+    "reviews": 7507,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Doom%20Eternal",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-10-24T05:53:06.443Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-19",
+    "title": "Hades",
+    "description": "Experience the amazing world of Hades. An incredible gaming adventure awaits you.",
+    "price": 35,
+    "originalPrice": 68,
+    "discount": 14,
+    "category": "Games",
+    "subcategory": "Adventure",
+    "platform": [
+      "Xbox Live",
+      "Xbox"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 398,
+    "rating": 3.9,
+    "reviews": 9228,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Hades",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-12-29T08:34:19.822Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-20",
+    "title": "Among Us",
+    "description": "Experience the amazing world of Among Us. An incredible gaming adventure awaits you.",
+    "price": 56,
+    "originalPrice": 65,
+    "discount": 33,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 397,
+    "rating": 3.2,
+    "reviews": 11466,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Among%20Us",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2025-02-17T22:02:22.021Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-21",
+    "title": "Fall Guys",
+    "description": "Experience the amazing world of Fall Guys. An incredible gaming adventure awaits you.",
+    "price": 23,
+    "originalPrice": 76,
+    "discount": 25,
+    "category": "Games",
+    "subcategory": "RPG",
+    "platform": [
+      "Epic Games",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 288,
+    "rating": 3.4,
+    "reviews": 7357,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Fall%20Guys",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-12-02T16:02:25.463Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-22",
+    "title": "Valheim",
+    "description": "Experience the amazing world of Valheim. An incredible gaming adventure awaits you.",
+    "price": 25,
+    "originalPrice": 74,
+    "discount": 34,
+    "category": "Games",
+    "subcategory": "Strategy",
+    "platform": [
+      "Steam",
+      "PC"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 244,
+    "rating": 3.6,
+    "reviews": 6121,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Valheim",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-08-13T17:09:10.895Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  },
+  {
+    "id": "game-23",
+    "title": "Phasmophobia",
+    "description": "Experience the amazing world of Phasmophobia. An incredible gaming adventure awaits you.",
+    "price": 23,
+    "originalPrice": 79,
+    "discount": 39,
+    "category": "Games",
+    "subcategory": "FPS",
+    "platform": [
+      "Xbox Live",
+      "Xbox"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 445,
+    "rating": 4.8,
+    "reviews": 3790,
+    "images": [
+      "https://via.placeholder.com/460x215/1a1a2e/ffffff?text=Phasmophobia",
+      "https://via.placeholder.com/460x215/16213e/ffffff?text=Screenshot+1",
+      "https://via.placeholder.com/460x215/0f3460/ffffff?text=Screenshot+2"
+    ],
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG",
+      "Multiplayer"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "requirements": {
+      "minimum": "Windows 10, Intel Core i5-6600K, 8 GB RAM, NVIDIA GTX 1060, 50 GB storage",
+      "recommended": "Windows 11, Intel Core i7-8700K, 16 GB RAM, NVIDIA RTX 3060, 50 GB storage"
+    },
+    "features": [
+      "Single Player",
+      "Multiplayer",
+      "Achievements"
+    ],
+    "createdAt": "2024-07-23T13:50:07.262Z",
+    "updatedAt": "2025-05-31T20:36:41.681Z"
+  }
+]

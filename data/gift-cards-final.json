@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gift-1",
+    "title": "Steam Gift Card $20 USD",
+    "description": "Add $20 to your Steam Wallet and enjoy thousands of games.",
+    "price": 20,
+    "originalPrice": 20,
+    "discount": 0,
+    "category": "Gift Cards",
+    "subcategory": "Digital Wallet",
+    "platform": [
+      "Steam"
+    ],
+    "region": "GLOBAL",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 1000,
+    "rating": 4.9,
+    "reviews": 5420,
+    "images": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/991980/header.jpg"
+    ],
+    "tags": [
+      "Gift Card",
+      "Steam",
+      "Digital"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "features": [
+      "Instant Delivery",
+      "No Expiration",
+      "Global"
+    ],
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-12-01T10:00:00Z"
+  },
+  {
+    "id": "gift-2",
+    "title": "PlayStation Store Gift Card $25 USD",
+    "description": "Add $25 to your PlayStation wallet for games, movies, and more.",
+    "price": 25,
+    "originalPrice": 25,
+    "discount": 0,
+    "category": "Gift Cards",
+    "subcategory": "Digital Wallet",
+    "platform": [
+      "PlayStation"
+    ],
+    "region": "US",
+    "digital": true,
+    "inStock": true,
+    "stockCount": 800,
+    "rating": 4.8,
+    "reviews": 3210,
+    "images": [
+      "https://compass-ssl.xbox.com/assets/fb/73/fb73d5bb-6778-4aa6-8e77-7c784c366e33.jpg"
+    ],
+    "tags": [
+      "Gift Card",
+      "PlayStation",
+      "Digital"
+    ],
+    "seller": "CALEB Gaming",
+    "deliveryTime": "Instant",
+    "features": [
+      "Instant Delivery",
+      "PlayStation Network",
+      "US Region"
+    ],
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-12-01T10:00:00Z"
+  }
+]
