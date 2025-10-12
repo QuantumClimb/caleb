@@ -1,0 +1,286 @@
+// CALEB Gaming Marketplace - Prisma Schema
+// Database schema for gaming marketplace with products, users, orders, and authentication
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication and profiles
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Authentication (NextAuth.js)
+  accounts Account[]
+  sessions Session[]
+
+  // User preferences
+  currency    String @default("USD")
+  language    String @default("en")
+  theme       String @default("dark")
+  
+  // Notifications preferences
+  emailNotifications     Boolean @default(true)
+  pushNotifications      Boolean @default(true)
+  marketingNotifications Boolean @default(false)
+
+  // User activity
+  orders    Order[]
+  reviews   Review[]
+  wishlist  WishlistItem[]
+  cartItems CartItem[]
+
+  @@map("users")
+}
+
+// NextAuth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// Product model based on your TypeScript interface
+model Product {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  price       Float
+  originalPrice Float?
+  discount    Int?     // Discount percentage
+  
+  // Categories and classification
+  category    String   // Games, Gift Cards, Top-ups
+  subcategory String
+  platform    String[] // PC, PlayStation, Xbox, Nintendo Switch, Mobile
+  region      String   @default("Global")
+  
+  // Product status
+  digital     Boolean  @default(true)
+  inStock     Boolean  @default(true)
+  stockCount  Int      @default(0)
+  
+  // Media and metadata
+  images      String[]
+  tags        String[]
+  
+  // Ratings and reviews
+  rating      Float    @default(0)
+  reviewCount Int      @default(0)
+  
+  // Seller and delivery
+  seller       String
+  deliveryTime String  @default("Instant")
+  
+  // System requirements (JSON field for flexibility)
+  requirements Json?
+  features     String[]
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  reviews      Review[]
+  wishlistItems WishlistItem[]
+  cartItems    CartItem[]
+  orderItems   OrderItem[]
+
+  // Indexes for performance
+  @@index([category])
+  @@index([subcategory])
+  @@index([price])
+  @@index([rating])
+  @@index([createdAt])
+  @@map("products")
+}
+
+// Shopping cart items
+model CartItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@map("cart_items")
+}
+
+// Wishlist functionality
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@map("wishlist_items")
+}
+
+// Order management
+model Order {
+  id          String      @id @default(cuid())
+  userId      String
+  status      OrderStatus @default(PENDING)
+  
+  // Pricing
+  subtotal    Float
+  tax         Float
+  shipping    Float
+  total       Float
+  
+  // Payment
+  paymentId     String?
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentMethod String?
+  
+  // Shipping
+  shippingAddress Json?
+  billingAddress  Json?
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  user       User        @relation(fields: [userId], references: [id])
+  orderItems OrderItem[]
+  
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float  // Price at time of order
+  
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+  
+  @@map("order_items")
+}
+
+// Product reviews and ratings
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  rating    Int      // 1-5 stars
+  title     String?
+  content   String?  @db.Text
+  helpful   Int      @default(0)
+  verified  Boolean  @default(false) // Verified purchase
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId]) // One review per user per product
+  @@map("reviews")
+}
+
+// Coupon and discount system
+model Coupon {
+  id          String     @id @default(cuid())
+  code        String     @unique
+  type        CouponType @default(PERCENTAGE)
+  value       Float      // Percentage or fixed amount
+  minOrder    Float?     // Minimum order value
+  maxDiscount Float?     // Maximum discount amount
+  
+  // Usage limits
+  usageLimit  Int?       // Total usage limit
+  usageCount  Int        @default(0)
+  perUserLimit Int?      // Per user limit
+  
+  // Validity
+  validFrom   DateTime
+  validUntil  DateTime
+  active      Boolean    @default(true)
+  
+  // Restrictions
+  categories  String[]   // Applicable categories
+  products    String[]   // Specific product IDs
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("coupons")
+}
+
+// Enums
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum CouponType {
+  PERCENTAGE
+  FIXED_AMOUNT
+  FREE_SHIPPING
+}
