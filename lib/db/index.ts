@@ -33,7 +33,7 @@ export class JsonDatabase<T> {
 
   async findById(id: string): Promise<T | null> {
     const data = await this.read();
-    return data.find((item: any) => item.id === id) || null;
+    return data.find((item: T) => (item as Record<string, unknown>).id === id) || null;
   }
 
   async findMany(filter: (item: T) => boolean): Promise<T[]> {
@@ -50,7 +50,7 @@ export class JsonDatabase<T> {
 
   async update(id: string, updates: Partial<T>): Promise<T | null> {
     const data = await this.read();
-    const index = data.findIndex((item: any) => item.id === id);
+    const index = data.findIndex((item: T) => (item as Record<string, unknown>).id === id);
     
     if (index === -1) return null;
     
@@ -61,7 +61,7 @@ export class JsonDatabase<T> {
 
   async delete(id: string): Promise<boolean> {
     const data = await this.read();
-    const index = data.findIndex((item: any) => item.id === id);
+    const index = data.findIndex((item: T) => (item as Record<string, unknown>).id === id);
     
     if (index === -1) return false;
     
@@ -104,7 +104,7 @@ export const ProductService = {
   },
 
   async getOnSale(): Promise<Product[]> {
-    return productsDb.findMany(product => product.discount > 0 && product.inStock);
+    return productsDb.findMany(product => (product.discount ?? 0) > 0 && product.inStock);
   },
 
   async search(query: string): Promise<Product[]> {
@@ -145,19 +145,19 @@ export const UserService = {
     return users.find(user => user.email === email) || null;
   },
 
-  async create(userData: Omit<User, 'id' | 'createdAt' | 'lastLoginAt'>): Promise<User> {
+  async create(userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User> {
     const user: User = {
       ...userData,
       id: `user_${Date.now()}`,
       createdAt: new Date().toISOString(),
-      lastLoginAt: new Date().toISOString()
+      updatedAt: new Date().toISOString()
     };
     
     return usersDb.create(user);
   },
 
   async updateLastLogin(id: string): Promise<User | null> {
-    return usersDb.update(id, { lastLoginAt: new Date().toISOString() });
+    return usersDb.update(id, { updatedAt: new Date().toISOString() });
   },
 
   async addToWishlist(userId: string, productId: string): Promise<User | null> {
@@ -195,13 +195,10 @@ export const OrderService = {
     return ordersDb.findMany(order => order.userId === userId);
   },
 
-  async create(orderData: Omit<Order, 'id' | 'orderNumber' | 'createdAt' | 'updatedAt'>): Promise<Order> {
-    const orderNumber = `CALEB-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
-    
+  async create(orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>): Promise<Order> {
     const order: Order = {
       ...orderData,
       id: `order_${Date.now()}`,
-      orderNumber,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -212,8 +209,7 @@ export const OrderService = {
   async updateStatus(
     id: string, 
     status: Order['status'], 
-    paymentStatus?: Order['paymentStatus'],
-    deliveryStatus?: Order['deliveryStatus']
+    paymentStatus?: Order['paymentStatus']
   ): Promise<Order | null> {
     const updates: Partial<Order> = {
       status,
@@ -221,8 +217,6 @@ export const OrderService = {
     };
 
     if (paymentStatus) updates.paymentStatus = paymentStatus;
-    if (deliveryStatus) updates.deliveryStatus = deliveryStatus;
-    if (status === 'completed') updates.completedAt = new Date().toISOString();
 
     return ordersDb.update(id, updates);
   },

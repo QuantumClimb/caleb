@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 import { Checkbox } from '../ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Slider } from '../ui/slider';
@@ -14,11 +13,8 @@ import {
   Filter, 
   Star, 
   DollarSign, 
-  Calendar, 
   Tag, 
-  Users, 
   Gamepad2,
-  Gift,
   Zap,
   SortAsc,
   SortDesc
@@ -196,9 +192,10 @@ export const AdvancedFilter: React.FC<AdvancedFilterProps> = ({
                 <div className="px-3">
                   <Slider
                     value={priceRange}
-                    onValueChange={(value) => setPriceRange(value as [number, number])}
-                    onValueCommit={(value) => {
-                      const [min, max] = value as [number, number];
+                    onValueChange={(value) => {
+                      const newValue = value as [number, number];
+                      setPriceRange(newValue);
+                      const [min, max] = newValue;
                       updateFilters({ priceRange: { min, max } });
                     }}
                     max={stats.priceRange.max}

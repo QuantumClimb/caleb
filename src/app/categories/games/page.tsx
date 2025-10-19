@@ -3,10 +3,9 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Input } from "../../../../components/ui/input"
 import { Button } from "../../../../components/ui/button"
-import { Badge } from "../../../../components/ui/badge"
 import { AdvancedFilter } from "../../../../components/product/advanced-filters"
 import { ProductGrid } from "../../../../components/product/product-grid"
-import { Search, Grid, List, Filter, SortAsc, SortDesc, Gamepad2 } from "lucide-react"
+import { Search, Grid, List, Filter, Gamepad2 } from "lucide-react"
 import { DataService, AdvancedFilters, SortOptions, FilterStats } from "../../../../lib/data"
 import { Product } from "../../../../types"
 
@@ -64,7 +63,7 @@ export default function GamesPage() {
       
       // Get games products and stats
       const gamesProducts = await DataService.getProductsByCategory("Games")
-      const stats = DataService.getFilterStats(gamesProducts)
+      const stats = await DataService.getFilterStats()
       
       setState(prev => ({
         ...prev,
@@ -146,15 +145,6 @@ export default function GamesPage() {
   const handlePageChange = (page: number) => {
     setState(prev => ({ ...prev, currentPage: page }))
     window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
-  const clearAllFilters = () => {
-    setState(prev => ({
-      ...prev,
-      filters: { categories: ["Games"] }, // Keep Games category
-      searchQuery: "",
-      currentPage: 1
-    }))
   }
 
   const toggleFilters = () => {

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { DataService } from '../../../../lib/data';
-import { SearchFilters } from '../../../../types';
+import { DataService, AdvancedFilters } from '../../../../lib/data';
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,7 +14,6 @@ export async function GET(request: NextRequest) {
     const region = searchParams.get('region') || undefined;
     const inStock = searchParams.get('inStock') === 'true' ? true : undefined;
     const discount = searchParams.get('discount') === 'true' ? true : undefined;
-    const tags = searchParams.get('tags')?.split(',') || undefined;
     
     // Price range
     const minPrice = searchParams.get('minPrice');
@@ -25,18 +23,22 @@ export async function GET(request: NextRequest) {
       max: parseFloat(maxPrice)
     } : undefined;
 
-    const filters: SearchFilters = {
-      category,
-      subcategory,
-      platform,
+    const filters: AdvancedFilters = {
+      query,
+      categories: category ? [category] : undefined,
+      subcategories: subcategory ? [subcategory] : undefined,
+      platforms: platform,
       priceRange,
-      region,
+      regions: region ? [region] : undefined,
       inStock,
-      discount,
-      tags,
+      hasDiscount: discount,
+      // Note: tags is not currently in AdvancedFilters interface
     };
 
-    const result = await DataService.searchProducts(query, filters, page, limit);
+    const sortBy = (searchParams.get('sortBy') || 'createdAt') as 'createdAt' | 'price' | 'rating' | 'title' | 'discount';
+    const sortOrder = (searchParams.get('sortOrder') || 'desc') as 'asc' | 'desc';
+    const sort = { field: sortBy, direction: sortOrder };
+    const result = await DataService.searchProductsAdvanced(filters, sort, page, limit);
 
     return NextResponse.json({
       success: true,
@@ -54,7 +56,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     // This would be for creating new products (admin only)
     return NextResponse.json(
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
       },
       { status: 501 }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         success: false,

@@ -6,7 +6,7 @@ import { Button } from "../../../components/ui/button"
 import { Badge } from "../../../components/ui/badge"
 import { AdvancedFilter } from "../../../components/product/advanced-filters"
 import { ProductGrid } from "../../../components/product/product-grid"
-import { Search, Grid, List, Filter, SortAsc, SortDesc } from "lucide-react"
+import { Search, Grid, List, Filter } from "lucide-react"
 import { DataService, AdvancedFilters, SortOptions, FilterStats } from "../../../lib/data"
 import { Product } from "../../../types"
 
@@ -64,7 +64,7 @@ export default function ProductsPage() {
       
       // Get all products and stats
       const allProducts = await DataService.getAllProducts()
-      const stats = DataService.getFilterStats(allProducts)
+      const stats = await DataService.getFilterStats()
       
       setState(prev => ({
         ...prev,
@@ -242,7 +242,7 @@ export default function ProductsPage() {
               <div className="flex flex-wrap gap-2">
                 {state.filters.query && (
                   <Badge variant="secondary" className="gap-1">
-                    Search: "{state.filters.query}"
+                    Search: &quot;{state.filters.query}&quot;
                     <button onClick={() => handleSearchChange("")}>×</button>
                   </Badge>
                 )}

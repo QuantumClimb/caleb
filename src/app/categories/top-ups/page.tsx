@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Input } from "../../../../components/ui/input"
 import { Button } from "../../../../components/ui/button"
-import { Badge } from "../../../../components/ui/badge"
+
 import { AdvancedFilter } from "../../../../components/product/advanced-filters"
 import { ProductGrid } from "../../../../components/product/product-grid"
 import { Search, Grid, List, Filter, Zap } from "lucide-react"
@@ -62,7 +62,7 @@ export default function TopUpsPage() {
       setState(prev => ({ ...prev, loading: true, error: null }))
       
       const topUpProducts = await DataService.getProductsByCategory("Top-ups")
-      const stats = DataService.getFilterStats(topUpProducts)
+      const stats = await DataService.getFilterStats()
       
       setState(prev => ({
         ...prev,

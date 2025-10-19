@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Gamepad2, Gift, Zap, TrendingUp } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import { Card, CardContent } from '../../components/ui/card';
 import { ProductCard } from '../../components/product/product-card';
 import { useCartStore } from '../../stores/cart-store';
 import { DataService } from '../../lib/data';
@@ -109,7 +109,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Shop by Category</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Find exactly what you're looking for in our carefully curated categories
+              Find exactly what you&apos;re looking for in our carefully curated categories
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -174,7 +174,7 @@ export default function HomePage() {
             <div>
               <h2 className="text-3xl font-bold mb-2">🔥 Hot Deals</h2>
               <p className="text-muted-foreground">
-                Limited time offers you don't want to miss
+                Limited time offers you don&apos;t want to miss
               </p>
             </div>
             <Button variant="outline" asChild>

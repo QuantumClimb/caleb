@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Search, ShoppingCart, User, Heart, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-import { cn } from '../../lib/utils';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 interface HeaderProps {

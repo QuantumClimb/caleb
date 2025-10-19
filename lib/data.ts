@@ -4,6 +4,31 @@
 import { prisma } from './prisma'
 import { Product } from '../types'
 
+interface CategoryStat {
+  category: string
+  _count: { id: number }
+}
+
+interface SubcategoryStat {
+  subcategory: string
+  _count: { id: number }
+}
+
+interface RegionStat {
+  region: string
+  _count: { id: number }
+}
+
+interface SellerStat {
+  seller: string
+  _count: { id: number }
+}
+
+interface RatingStat {
+  rating: number
+  _count: { id: number }
+}
+
 export interface AdvancedFilters {
   // Search
   query?: string
@@ -206,7 +231,7 @@ export class DataService {
   ): Promise<SearchResult> {
     try {
       // Build where clause
-      const where: any = {}
+      const where: Record<string, unknown> = {}
 
       // Category filters
       if (filters.categories?.length) {
@@ -281,7 +306,7 @@ export class DataService {
       }
 
       // Build orderBy
-      const orderBy: any = {}
+      const orderBy: Record<string, string> = {}
       
       switch (sort.field) {
         case 'price':
@@ -339,7 +364,7 @@ export class DataService {
   /**
    * Get filter statistics
    */
-  static async getFilterStats(products?: Product[]): Promise<FilterStats> {
+  static async getFilterStats(): Promise<FilterStats> {
     try {
       const [
         totalProducts,
@@ -383,25 +408,25 @@ export class DataService {
           min: priceStats._min.price || 0,
           max: priceStats._max.price || 0
         },
-        categories: categoryStats.map((item: any) => ({
+        categories: categoryStats.map((item: CategoryStat) => ({
           name: item.category,
           count: item._count.id
         })),
-        subcategories: subcategoryStats.map((item: any) => ({
+        subcategories: subcategoryStats.map((item: SubcategoryStat) => ({
           name: item.subcategory,
           count: item._count.id
         })),
         platforms: [], // Will implement if needed
-        regions: regionStats.map((item: any) => ({
+        regions: regionStats.map((item: RegionStat) => ({
           name: item.region,
           count: item._count.id
         })),
         tags: [], // Will implement if needed
-        sellers: sellerStats.map((item: any) => ({
+        sellers: sellerStats.map((item: SellerStat) => ({
           name: item.seller,
           count: item._count.id
         })),
-        ratingDistribution: ratingStats.map((item: any) => ({
+        ratingDistribution: ratingStats.map((item: RatingStat) => ({
           rating: item.rating,
           count: item._count.id
         }))
@@ -425,6 +450,7 @@ export class DataService {
   /**
    * Transform Prisma product to our Product interface
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static transformProduct(product: any): Product {
     return {
       id: product.id,
